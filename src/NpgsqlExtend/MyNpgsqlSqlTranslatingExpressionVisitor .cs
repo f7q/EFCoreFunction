@@ -71,7 +71,7 @@ namespace Microsoft.EntityFrameworkCore.Query.ExpressionVisitors
                 {
                     var left = Visit(expression.Left);
                     var right = Visit(expression.Right);
-
+                    
                     return left != null && right != null
                         ? Expression.MakeBinary(ExpressionType.ArrayIndex, left, right)
                         : null;

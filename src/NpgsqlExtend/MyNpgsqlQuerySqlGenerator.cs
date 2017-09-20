@@ -29,16 +29,18 @@ namespace Microsoft.EntityFrameworkCore.Query.Sql.Internal
 
             return FullTextSeachExpression;
         }
-        /*
+       
         protected override string GenerateOperator(Expression expression)
         {
             switch (expression.NodeType)
             {
                 //.Where(i.Name == name) can not return;
+                /*
                 case ExpressionType.Equal:
-                    if (expression.Type == typeof(bool))
+                    if (expression.Type == typeof(string))
                         return " &@~ ";
                     goto default;
+                    */
                 case ExpressionType.Add:
                     if (expression.Type == typeof(string))
                         return " || ";
@@ -55,6 +57,6 @@ namespace Microsoft.EntityFrameworkCore.Query.Sql.Internal
                     return base.GenerateOperator(expression);
             }
         }
-        */
+
     }
 }

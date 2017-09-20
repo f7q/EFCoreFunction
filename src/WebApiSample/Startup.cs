@@ -40,7 +40,7 @@ namespace WebApiSample
             var dbkind = Configuration["Data:DefaultConnection:ConnectionDBString"];
             if(dbkind.Equals("postgresql"))
             {
-                services.AddEntityFrameworkMyNpgsql();
+                services.AddEntityFrameworkMyNpgsql(); //DI Add
                 services.AddDbContext<SampleDbContext>(options =>
                 {
                     options.UseNpgsql(Configuration["Data:DefaultConnection:ConnectionString"]);

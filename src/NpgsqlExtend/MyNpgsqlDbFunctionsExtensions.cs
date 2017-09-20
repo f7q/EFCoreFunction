@@ -42,7 +42,7 @@ namespace Microsoft.EntityFrameworkCore
             {
                 return false;
             }
-
+            
             return column.Equals(param);
         }
     }

@@ -33,7 +33,7 @@ namespace WebApiSample.Controllers
 
         // GET api/values/5
         [HttpGet("{name}")]
-        public IActionResult Get([FromQuery]string name)
+        public IActionResult Get([FromRoute]string name)
         {
             /*
             var sql = _dbContext.Values.Where(i => i.Name == name).ToSql();
