@@ -23,9 +23,9 @@ namespace Microsoft.EntityFrameworkCore.Query.Sql.Internal
         public virtual Expression VisitFTS(FTSExpression FullTextSeachExpression)
         {
 
-            Visit(FullTextSeachExpression.Column);
+            Visit(ParameterExpression.Parameter(typeof(string), FullTextSeachExpression.Column));
             Sql.Append(" &@~ ");
-            Visit(FullTextSeachExpression.Param);
+            Visit(ParameterExpression.Parameter(typeof(string), FullTextSeachExpression.Param));
 
             return FullTextSeachExpression;
         }

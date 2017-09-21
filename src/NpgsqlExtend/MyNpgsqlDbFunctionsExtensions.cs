@@ -32,18 +32,19 @@ namespace Microsoft.EntityFrameworkCore
                 return false;
             }
 
-            /*if (column.Equals(param))
+            if (column.Equals(param))
             {
                 return true;
-            }*/
+            }
 
-            if (column.Length == 0
-                || param.Length == 0)
+            
+            if (string.IsNullOrEmpty(column)
+                || string.IsNullOrEmpty(param))
             {
                 return false;
             }
             
-            return column.Equals(param);
+            return true;
         }
     }
 }

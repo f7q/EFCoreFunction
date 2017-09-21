@@ -17,7 +17,7 @@ namespace Microsoft.EntityFrameworkCore.Query.Expressions.Internal
         /// <summary>
         ///     Creates a new instance of FullTextSrcheExpression.
         /// </summary>
-        public FTSExpression(Expression column, Expression param)
+        public FTSExpression(string column, string param)
         {
             Column = column;
             Param = param;
@@ -29,7 +29,7 @@ namespace Microsoft.EntityFrameworkCore.Query.Expressions.Internal
         /// <value>
         ///     The match expression.
         /// </value>
-        public virtual Expression Column { get; }
+        public virtual string Column { get; }
 
         /// <summary>
         ///     Gets the SQL Param.
@@ -37,7 +37,7 @@ namespace Microsoft.EntityFrameworkCore.Query.Expressions.Internal
         /// <value>
         ///     The pattern to match.
         /// </value>
-        public virtual Expression Param { get; }
+        public virtual string Param { get; }
 
         /// <summary>
         ///     Returns the node type of this <see cref="Expression" />. (Inherited from <see cref="Expression" />.)
@@ -104,12 +104,13 @@ namespace Microsoft.EntityFrameworkCore.Query.Expressions.Internal
         /// </remarks>
         protected override Expression VisitChildren(ExpressionVisitor visitor)
         {
-            var newColumnExpression = visitor.Visit(Column);
-            var newParamExpression = visitor.Visit(Param);
+            
+            var newColumnExpression = visitor.Visit(ParameterExpression.Parameter(typeof(string),Column));
+            var newParamExpression = visitor.Visit(ParameterExpression.Parameter(typeof(string), Param));
 
-            return newColumnExpression != Column
-                   || newParamExpression != Param
-                ? new FTSExpression(newColumnExpression, newParamExpression)
+            return newColumnExpression != ParameterExpression.Parameter(typeof(string), Column)
+                   || newParamExpression != ParameterExpression.Parameter(typeof(string), Param)
+                ? new FTSExpression(Column, Param)
                 : this;
         }
         /// <summary>
