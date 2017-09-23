@@ -35,14 +35,14 @@ namespace WebApiSample.Controllers
         [HttpGet("{name}")]
         public IActionResult Get([FromRoute]string name)
         {
-            
+            /*
             var sql = _dbContext.Values.Where(i => i.Name == name).ToSql();
             _logger.LogInformation("before sql{@}", sql);
             sql = sql.Replace("=", "&@~"); // AND ORは大文字
             _logger.LogInformation("after sql{@}", sql);
             var result = _dbContext.Values.FromSql(sql).ToList();
-            
-            //var result = _dbContext.Values.Where(i => EF.Functions.FTS(i.Name, name)).ToList();
+            */
+            var result = _dbContext.Values.Where(i => EF.Functions.FTS(i.Name, name)).ToSql();
             //var result = _dbContext.Values.Where(i => i.Name == name).ToList();
             if (result != null)
             {

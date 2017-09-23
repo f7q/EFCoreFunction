@@ -10,8 +10,6 @@ using Microsoft.EntityFrameworkCore.Utilities;
 
 namespace Microsoft.EntityFrameworkCore.Query.Sql.Internal
 {
-
-
     public class MyNpgsqlQuerySqlGenerator : NpgsqlQuerySqlGenerator
     {
         public MyNpgsqlQuerySqlGenerator(
@@ -29,7 +27,7 @@ namespace Microsoft.EntityFrameworkCore.Query.Sql.Internal
 
             return FullTextSeachExpression;
         }
-       
+#if false
         protected override string GenerateOperator(Expression expression)
         {
             switch (expression.NodeType)
@@ -57,6 +55,6 @@ namespace Microsoft.EntityFrameworkCore.Query.Sql.Internal
                     return base.GenerateOperator(expression);
             }
         }
-
+#endif
     }
 }
