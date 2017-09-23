@@ -18,10 +18,12 @@ namespace Microsoft.EntityFrameworkCore.Query.Sql.Internal
             : base(dependencies, selectExpression)
         {
         }
+
         public virtual Expression VisitFTS(FTSExpression FullTextSeachExpression)
         {
 
             Visit(FullTextSeachExpression.Column);
+            //Sql.Append(" = ");
             Sql.Append(" &@~ ");
             Visit(FullTextSeachExpression.Param);
 

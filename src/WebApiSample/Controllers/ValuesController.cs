@@ -42,8 +42,10 @@ namespace WebApiSample.Controllers
             _logger.LogInformation("after sql{@}", sql);
             var result = _dbContext.Values.FromSql(sql).ToList();
             */
+            //var result = _dbContext.Values.Where(i => EF.Functions.Like(i.Name, name + "%") || 1 == 1).ToSql(); // OR TRUE 句は WHERE文を省略する
+            //var result = _dbContext.Values.Where(i => EF.Functions.ILike(i.Name, name) || 1 == 1).ToSql();
             var result = _dbContext.Values.Where(i => EF.Functions.FTS(i.Name, name)).ToSql();
-            //var result = _dbContext.Values.Where(i => i.Name == name).ToList();
+            //var result = _dbContext.Values.Where(i => i.Name == name).ToSql();
             if (result != null)
             {
                 return Ok(result);

@@ -18,23 +18,10 @@ namespace Microsoft.EntityFrameworkCore.Query.ExpressionTranslators.Internal
         {
             //Check.NotNull(methodCallExpression, nameof(methodCallExpression));
 
-            bool sensitive;
             if (Equals(methodCallExpression.Method, _FTS))
-                sensitive = true;
-            //else if (Equals(methodCallExpression.Method, _FTS))
-            //    sensitive = false;
+                return new FTSExpression(methodCallExpression.Arguments[1], methodCallExpression.Arguments[2]);
             else
                 return null;
-
-            if (methodCallExpression.Arguments[2] is ConstantExpression constantPattern &&
-                constantPattern.Value is string pattern &&
-                !pattern.Contains("\\"))
-            {
-                return sensitive
-                    ? new FTSExpression(methodCallExpression.Arguments[1], methodCallExpression.Arguments[2])
-                    : (Expression)new FTSExpression(methodCallExpression.Arguments[1], methodCallExpression.Arguments[2]);
-            }
-            return null;
         }
     }
 }
