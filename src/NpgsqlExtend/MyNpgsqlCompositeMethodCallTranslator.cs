@@ -29,7 +29,7 @@ namespace Microsoft.EntityFrameworkCore.Query.ExpressionTranslators.Internal
         };
 
         public MyNpgsqlCompositeMethodCallTranslator(
-             RelationalCompositeMethodCallTranslatorDependencies dependencies)
+             [NotNull] RelationalCompositeMethodCallTranslatorDependencies dependencies)
             : base(dependencies)
         {
             // ReSharper disable once DoNotCallOverridableMethodsInConstructor

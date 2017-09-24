@@ -58,9 +58,9 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns>
         ///     A builder that allows further Entity Framework specific setup of the <see cref="IServiceCollection" />.
         /// </returns>
-        public static IServiceCollection AddEntityFrameworkMyNpgsql(this IServiceCollection serviceCollection)
+        public static IServiceCollection AddEntityFrameworkMyNpgsql([NotNull] this IServiceCollection serviceCollection)
         {
-            //Check.NotNull(serviceCollection, nameof(serviceCollection));
+            Check.NotNull(serviceCollection, nameof(serviceCollection));
 
             var builder = new EntityFrameworkRelationalServicesBuilder(serviceCollection)
                 .TryAdd<IDatabaseProvider, DatabaseProvider<NpgsqlOptionsExtension>>()

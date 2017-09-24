@@ -17,8 +17,11 @@ namespace Microsoft.EntityFrameworkCore.Query.Expressions.Internal
         /// <summary>
         ///     Creates a new instance of FullTextSrcheExpression.
         /// </summary>
-        public FTSExpression(Expression column, Expression param)
+        public FTSExpression([NotNull] Expression column, [NotNull] Expression param)
         {
+            Check.NotNull(column, nameof(column));
+            Check.NotNull(param, nameof(param));
+
             Column = column;
             Param = param;
         }
@@ -55,7 +58,7 @@ namespace Microsoft.EntityFrameworkCore.Query.Expressions.Internal
         /// </summary>
         protected override Expression Accept(ExpressionVisitor visitor)
         {
-            //Check.NotNull(visitor, nameof(visitor));
+            Check.NotNull(visitor, nameof(visitor));
 
             var specificVisitor = visitor as MyNpgsqlQuerySqlGenerator;
 

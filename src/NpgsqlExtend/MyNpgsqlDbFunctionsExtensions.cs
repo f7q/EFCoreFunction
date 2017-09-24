@@ -17,9 +17,9 @@ namespace Microsoft.EntityFrameworkCore
         /// <param name="param">The param</param>
         /// <returns>true if there is a match.</returns>
         public static bool FTS(
-            this DbFunctions _,
-            string column,
-            string param)
+            [CanBeNull] this DbFunctions _,
+            [CanBeNull] string column,
+            [CanBeNull] string param)
             => FTSCore(column, param);
 
 

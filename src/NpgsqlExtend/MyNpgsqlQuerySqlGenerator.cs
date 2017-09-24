@@ -13,14 +13,15 @@ namespace Microsoft.EntityFrameworkCore.Query.Sql.Internal
     public class MyNpgsqlQuerySqlGenerator : NpgsqlQuerySqlGenerator
     {
         public MyNpgsqlQuerySqlGenerator(
-            QuerySqlGeneratorDependencies dependencies,
-            SelectExpression selectExpression)
+            [NotNull] QuerySqlGeneratorDependencies dependencies,
+            [NotNull] SelectExpression selectExpression)
             : base(dependencies, selectExpression)
         {
         }
 
         public virtual Expression VisitFTS(FTSExpression FullTextSeachExpression)
         {
+            Check.NotNull(FullTextSeachExpression, nameof(FullTextSeachExpression));
 
             Visit(FullTextSeachExpression.Column);
             //Sql.Append(" = ");

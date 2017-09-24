@@ -7,7 +7,7 @@ namespace Microsoft.EntityFrameworkCore.Query.Sql.Internal
 {
     public class MyNpgsqlQuerySqlGeneratorFactory : NpgsqlQuerySqlGeneratorFactory
     {
-        public MyNpgsqlQuerySqlGeneratorFactory(QuerySqlGeneratorDependencies dependencies)
+        public MyNpgsqlQuerySqlGeneratorFactory([NotNull] QuerySqlGeneratorDependencies dependencies)
             : base(dependencies)
         {
         }
