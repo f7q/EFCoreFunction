@@ -16,7 +16,7 @@ namespace Microsoft.EntityFrameworkCore.Query.ExpressionTranslators.Internal
 
         public virtual Expression Translate(MethodCallExpression methodCallExpression)
         {
-            //Check.NotNull(methodCallExpression, nameof(methodCallExpression));
+            Check.NotNull(methodCallExpression, nameof(methodCallExpression));
 
             if (Equals(methodCallExpression.Method, _FTS))
                 return new FTSExpression(methodCallExpression.Arguments[1], methodCallExpression.Arguments[2]);

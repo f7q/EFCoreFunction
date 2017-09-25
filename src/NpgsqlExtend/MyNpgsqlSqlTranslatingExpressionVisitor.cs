@@ -14,10 +14,10 @@ namespace Microsoft.EntityFrameworkCore.Query.ExpressionVisitors
         private readonly RelationalQueryModelVisitor _queryModelVisitor;
 
         public MyNpgsqlSqlTranslatingExpressionVisitor(
-             SqlTranslatingExpressionVisitorDependencies dependencies,
-             RelationalQueryModelVisitor queryModelVisitor,
-             SelectExpression targetSelectExpression = null,
-             Expression topLevelPredicate = null,
+            [NotNull] SqlTranslatingExpressionVisitorDependencies dependencies,
+            [NotNull] RelationalQueryModelVisitor queryModelVisitor,
+            [CanBeNull] SelectExpression targetSelectExpression = null,
+            [CanBeNull] Expression topLevelPredicate = null,
             bool inProjection = false)
             : base(dependencies, queryModelVisitor, targetSelectExpression, topLevelPredicate, inProjection)
         {

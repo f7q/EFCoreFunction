@@ -13,7 +13,7 @@ namespace Microsoft.EntityFrameworkCore.Query.ExpressionVisitors
         ///     Creates a new instance of <see cref="SqlTranslatingExpressionVisitorFactory" />.
         /// </summary>
         /// <param name="dependencies"> Parameter object containing dependencies for this service. </param>
-        public MyNpgsqlSqlTranslatingExpressionVisitorFactory( SqlTranslatingExpressionVisitorDependencies dependencies)
+        public MyNpgsqlSqlTranslatingExpressionVisitorFactory([NotNull] SqlTranslatingExpressionVisitorDependencies dependencies)
             : base(dependencies) { }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Microsoft.EntityFrameworkCore.Query.ExpressionVisitors
             bool inProjection = false)
             => new MyNpgsqlSqlTranslatingExpressionVisitor(
                 Dependencies,
-                queryModelVisitor,
+                Check.NotNull(queryModelVisitor, nameof(queryModelVisitor)),
                 targetSelectExpression,
                 topLevelPredicate,
                 inProjection);
