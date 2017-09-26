@@ -56,15 +56,19 @@ namespace Microsoft.EntityFrameworkCore.Query.Expressions.Internal
         /// <summary>
         ///     Dispatches to the specific visit method for this node type.
         /// </summary>
-        protected override Expression Accept(ExpressionVisitor visitor)
+        protected override Expression Accept([NotNull] ExpressionVisitor visitor)
         {
             Check.NotNull(visitor, nameof(visitor));
 
-            var specificVisitor = visitor as MyNpgsqlQuerySqlGenerator;
+
+            return visitor is MyNpgsqlQuerySqlGenerator npsgqlGenerator
+                ? npsgqlGenerator.VisitFTS(this)
+                : base.Accept(visitor);
+            /*var specificVisitor = visitor as MyNpgsqlQuerySqlGenerator;
 
             return specificVisitor != null
                 ? specificVisitor.VisitFTS(this)
-                : base.Accept(visitor);
+                : base.Accept(visitor);*/
         }
 
         /// <summary>

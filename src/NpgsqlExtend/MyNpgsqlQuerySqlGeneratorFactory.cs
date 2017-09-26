@@ -14,6 +14,7 @@ namespace Microsoft.EntityFrameworkCore.Query.Sql.Internal
 
         public override IQuerySqlGenerator CreateDefault(SelectExpression selectExpression)
             => new MyNpgsqlQuerySqlGenerator(
-                Dependencies, selectExpression);
+                Dependencies,
+                Check.NotNull(selectExpression, nameof(selectExpression)));
     }
 }

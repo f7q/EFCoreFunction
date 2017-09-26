@@ -19,14 +19,18 @@ namespace Microsoft.EntityFrameworkCore.Query.Sql.Internal
         {
         }
 
-        public virtual Expression VisitFTS(FTSExpression FullTextSeachExpression)
+        //VisitRegexMatch
+        public virtual Expression VisitFTS([NotNull] FTSExpression FullTextSeachExpression)
         {
             Check.NotNull(FullTextSeachExpression, nameof(FullTextSeachExpression));
 
+            Sql.Append(" ( ");
             Visit(FullTextSeachExpression.Column);
             //Sql.Append(" = ");
+            //Sql.Append(" ~ ");
             Sql.Append(" &@~ ");
             Visit(FullTextSeachExpression.Param);
+            Sql.Append(" ) ");
 
             return FullTextSeachExpression;
         }

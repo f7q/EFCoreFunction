@@ -25,25 +25,31 @@ namespace Microsoft.EntityFrameworkCore
 
         private static bool FTSCore(string column, string param)
         {
+            if(string.IsNullOrEmpty(column) ||
+                string.IsNullOrEmpty(param))
+            {
+                return false;
+            }
 
-            if (column == null
+            /*if (column == null
                 || param == null)
             {
                 return false;
             }
 
-            /*if (column.Equals(param))
+            if (column.Equals(param))
             {
                 return true;
-            }*/
+            }
 
             if (column.Length == 0
                 || param.Length == 0)
             {
                 return false;
-            }
-            
-            return column.Equals(param);
+            }*/
+            var arg1 = column.ToLower().Normalize();
+            var arg2 = param.ToLower().Normalize();
+            return arg1.Equals(arg2);
         }
     }
 }
